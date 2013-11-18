@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^upgrade\.busana\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.upgrade\.busana\.com$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com" [R=301,L]
+
