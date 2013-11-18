@@ -1,0 +1,163 @@
+
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+Header set Cache-Control "max-age=172800, public"
+</FilesMatch>
+
+<IfModule mod_deflate.c>
+
+# Force compression for mangled headers.
+# http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
+<IfModule mod_setenvif.c>
+<IfModule mod_headers.c>
+SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+</IfModule>
+</IfModule>
+
+# Compress all output labeled with one of the following MIME-types
+# (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
+#  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
+#  as `AddOutputFilterByType` is still in the core directives).
+
+<IfModule mod_filter.c>
+AddOutputFilterByType DEFLATE application/atom+xml \
+application/javascript \
+application/x-javascript \
+application/json \
+application/rss+xml \
+application/vnd.ms-fontobject \
+application/x-font-ttf \
+application/x-web-app-manifest+json \
+application/xhtml+xml \
+application/xml \
+font/opentype \
+image/svg+xml \
+image/x-icon \
+text/css \
+text/html \
+text/plain \
+text/x-component \
+text/xml
+</IfModule>
+</IfModule>
+
+<IfModule mod_expires.c>
+# Enable expirations
+ExpiresActive On 
+# Default directive
+ExpiresDefault "access plus 1 month"
+# My favicon
+ExpiresByType image/x-icon "access plus 1 year"
+# Images
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/jpg "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+# CSS
+ExpiresByType text/css "access 1 month"
+# Javascript
+ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+
+# 1.To use URL Alias you need to be running apache with mod_rewrite enabled. 
+
+# 2. In your opencart directory rename htaccess.txt to .htaccess.
+
+# For any support issues please visit: http://www.opencart.com
+
+Options +FollowSymlinks
+
+# Prevent Directoy listing 
+Options -Indexes
+
+# Prevent Direct Access to files
+<FilesMatch "\.(tpl|ini|log)">
+ Order deny,allow
+ Deny from all
+</FilesMatch>
+
+# SEO URL Settings
+RewriteEngine On
+# If your opencart installation does not run on the main web folder make sure you folder it does run in ie. / becomes /shop/ 
+
+RewriteBase /
+RewriteRule ^sitemap.xml$ index.php?route=feed/google_sitemap [L]
+RewriteRule ^googlebase.xml$ index.php?route=feed/google_base [L]
+RewriteRule ^download/(.*) /index.php?route=error/not_found [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
+
+### Additional Settings that may need to be enabled for some servers 
+### Uncomment the commands by removing the # sign in front of it.
+### If you get an "Internal Server Error 500" after enabling any of the following settings, restore the # as this means your host doesn't allow that.
+
+# 1. If your cart only allows you to add one item at a time, it is possible register_globals is on. This may work to disable it:
+# php_flag register_globals off
+
+# 2. If your cart has magic quotes enabled, This may work to disable it:
+# php_flag magic_quotes_gpc Off
+
+# 3. Set max upload file size. Most hosts will limit this and not allow it to be overridden but you can try
+# php_value upload_max_filesize 999M
+
+# 4. set max post size. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value post_max_size 999M
+
+# 5. set max time script can take. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value max_execution_time 200
+
+# 6. set max time for input to be recieved. Uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value max_input_time 200
+
+# 7. disable open_basedir limitations
+# php_admin_value open_basedir none
+RewriteCond %{HTTP_HOST} ^babysitter\.co\.id$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.babysitter\.co\.id$
+RewriteRule ^/?$ "http\:\/\/www\.pembantu\.com\/" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^baju\.co$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.baju\.co$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com\/baju" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^barangelektronik\.co\.id$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.barangelektronik\.co\.id$
+RewriteRule ^/?$ "http\:\/\/www\.barangelektronik\.com" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^busana\.cm$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.busana\.cm$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^busana\.co\.id$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.busana\.co\.id$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^busana\.co\.uk$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.busana\.co\.uk$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^busana\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.busana\.net$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^busana\.org$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.busana\.org$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^sepatu\.co$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.sepatu\.co$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com\/sepatu\/" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^kredit\.co\.id$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.kredit\.co\.id$
+RewriteRule ^/?$ "http\:\/\/kredit\.com" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^tokobagus\.cm$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.tokobagus\.cm$
+RewriteRule ^/?$ "http\:\/\/www\.busana\.com" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^pembantu\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.pembantu\.net$
+RewriteRule ^/?$ "http\:\/\/www\.pembantu\.com" [R=301,L]
+
