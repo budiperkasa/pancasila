@@ -1,0 +1,2 @@
+[12-Aug-2013 23:35:28 Asia/Jakarta] PHP Warning:  Module 'apc' already loaded in Unknown on line 0
+[12-Aug-2013 23:35:28 Asia/Jakarta] PHP Warning:  PHP Startup: apc.shm_size now uses M/G suffixes, please update your ini files in Unknown on line 0

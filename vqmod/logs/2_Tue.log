@@ -1,0 +1,14 @@
+---------- Date: 2013-08-20 01:58:05 ~ IP : 142.91.79.35 ----------
+REQUEST URI : /trend-jersey-bola
+MOD DETAILS:
+   modFile   : /home/busanaco/public_html/vqmod/xml/custom_body_classes.xml
+   id        : Add custom classes to body
+   version   : 1.0.1
+   vqmver    : 2.1
+   author    : everthemes.com
+
+File Name    : catalog/view/theme/*/template/common/header.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <body class="<?php echo $base_class; ?>">
+----------------------------------------------------------------------
+
+
