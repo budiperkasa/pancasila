@@ -1228,9 +1228,7 @@ if(empty($fortuna_categories_active_color)) $fortuna_categories_active_color ="0
 
 						<table>
 							<tr>
-								<td><?php if($fortuna_facebook_button == 1) { echo '<div class="status status-on" title="1" rel="fortuna_facebook_button"></div>'; } else { echo '<div class="status status-off" title="0" rel="fortuna_facebook_button"></div>'; } ?>
-						<input name="fortuna_facebook_button" value="<?php echo $fortuna_facebook_button; ?>" id="fortuna_facebook_button" type="hidden" /></td>
-								<td><span class="customhelp"><?php echo $entry_facebook_button_help; ?></span></td>
+								
 							</tr>
 							<tr>
 								<td><?php if($fortuna_facebook_icon == 1) { echo '<div class="status status-on" title="1" rel="fortuna_facebook_icon"></div>'; } else { echo '<div class="status status-off" title="0" rel="fortuna_facebook_icon"></div>'; } ?>
