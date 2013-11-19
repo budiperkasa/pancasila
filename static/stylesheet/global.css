@@ -690,6 +690,13 @@ Tags: fortuna, opencart, everthemes
 			top: -24px;
 			left: 0;
 		}
+		#welcome h1 {font-size:9px;}
+                .row-fluid h1 {
+    		font-size: 9px;
+		}
+		.titles {
+		font-size: 9px;
+		}
 		.style_two #welcome {
 			position: relative;
 			top: 0;
